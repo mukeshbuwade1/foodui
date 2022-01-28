@@ -1,4 +1,4 @@
-import { FlatList, Image, SafeAreaView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { FlatList, Image, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import colors from '../assets/colors/colors';
 import Feather from 'react-native-vector-icons/Feather';
@@ -8,7 +8,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import categorydata from '../assets/data/Categorydata';
 import populardata from "../assets/data/Papulardata"
 
-const Home = () => {
+const Home = ({navigation}) => {
   const [category, setcategory] = React.useState(categorydata)
   const renderCategory = ({ item }) => (
     <TouchableOpacity
@@ -42,70 +42,76 @@ const Home = () => {
   )
 
   const renderpopular = ({ item }) => (
-    <View style={{flexDirection:"row" ,width:"100%" ,height:200 ,borderRadius:20}}>
-      <View>
-        <View style={{flexDirection:"row"}}>
+    <TouchableOpacity
+    onPress={()=>navigation.navigate("Details",{item})}
+     style={{ flexDirection: "row", width: "100%", height: 200, marginVertical:15 }}>
+      <View> 
+        <View style={{ flexDirection: "row",marginVertical:10 }}>
           <MaterialCommunityIcons
             name="crown"
             size={25}
             color={colors.primary}
           />
-          <Text>top of the week</Text>
+          <Text style={{fontSize:17,fontFamily: "Montserrat-SemiBold", marginLeft:10,}}>Top of The Week</Text>
         </View>
-        <Text>{item.title}</Text>
-        <Text>weight : {item.weight}</Text>
-        <View style={{position:'absolute', bottom:0, left:0, flexDirection:"row"}}>
-        <MaterialIcons name="add" size={30} color={colors.background} style={{ paddingHorizontal: 30, backgroundColor:colors.primary ,paddingVertical:10 }} />
-        <View>
-        <Entypo name="star" size={30} color={colors.textDark} style={{ paddingHorizontal: 5 }} />
-        <Text>{item.rating}</Text>
+        <Text style={{fontSize:17,fontFamily: "Montserrat-Bold", color:colors.textDark, marginTop:15}}>{item.title}</Text>
+        <Text style={{fontSize:17,fontFamily: "Montserrat-SemiBold", color:colors.textLight,marginVertical:10}}>weight : {item.weight}</Text>
+        <View style={{ position: 'absolute', bottom: 20, left: 0, flexDirection: "row" }}>
+          <MaterialIcons name="add" size={25} color={colors.background} style={{ paddingHorizontal: 30, backgroundColor: colors.primary, paddingVertical: 10,borderBottomLeftRadius:20, borderTopRightRadius:20 }} />
+          <View style={{flexDirection: "row", justifyContent:"center",alignItems:"center",marginLeft:10, }}>
+            <Entypo name="star" size={20} color={colors.textDark} style={{ paddingHorizontal: 5 }} />
+            <Text  style={{fontSize:17,fontFamily: "Montserrat-SemiBold"}}>{item.rating}</Text>
+          </View>
         </View>
-        </View>
-
       </View>
-      <View style={{position:"absolute" , right:-110}}>
-        <Image source={item.image} style={{ width: 320, height: 200,}} />
+      <View style={{ position: "absolute", right: -90 }}>
+        <Image source={item.image} style={{ width: 290, height: 140, }} resizeMode='contain' />
       </View>
-    </View>
+    </TouchableOpacity
+    >
   )
+
+  //render item
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar translucent={false} backgroundColor={"#fff"} barStyle={"dark-content"} />
-      {/* header  */}
-      <View style={styles.header}>
-        <Image source={require("../assets/images/profile.png")} style={styles.profile} resizeMode='contain' />
-        <Feather name="menu" size={25} color={colors.textDark} />
-      </View>
-      {/* title */}
-      <View style={styles.title}>
-        <Text style={styles.food}>Food</Text>
-        <Text style={styles.delivery}>Delivery</Text>
-      </View>
-      {/* search */}
-      <View style={styles.search}>
-        <MaterialIcons name="search" size={30} color={colors.textDark} style={{ paddingHorizontal: 5 }} />
-        <TextInput placeholder='Search...' style={styles.input} />
-      </View>
-      {/* category */}
-      <View style={styles.categoryContainer}>
-        <Text style={styles.mainTitles}>Category</Text>
-        <FlatList
-          showsHorizontalScrollIndicator={false}
-          horizontal
-          data={category}
-          renderItem={renderCategory}
-          keyExtractor={item => item.id}
-        />
-      </View>
-      {/* popular */}
-      <View style={styles.popularContainer}>
-        <Text style={styles.mainTitles}> Popular </Text>
-        <FlatList
-          data={populardata}
-          renderItem={renderpopular}
-          keyExtractor={item => item.id}
-        />
-      </View>
+      <ScrollView>
+        <StatusBar translucent={false} backgroundColor={"#fff"} barStyle={"dark-content"} />
+        {/* header  */}
+        <View style={styles.header}>
+          <Image source={require("../assets/images/profile.png")} style={styles.profile} resizeMode='contain' />
+          <Feather name="menu" size={25} color={colors.textDark} />
+        </View>
+        {/* title */}
+        <View style={styles.title}>
+          <Text style={styles.food}>Food</Text>
+          <Text style={styles.delivery}>Delivery</Text>
+        </View>
+        {/* search */}
+        <View style={styles.search}>
+          <MaterialIcons name="search" size={30} color={colors.textDark} style={{ paddingHorizontal: 5 }} />
+          <TextInput placeholder='Search...' style={styles.input} />
+        </View>
+        {/* category */}
+        <View style={styles.categoryContainer}>
+          <Text style={styles.mainTitles}>Category</Text>
+          <FlatList
+            showsHorizontalScrollIndicator={false}
+            horizontal
+            data={category}
+            renderItem={renderCategory}
+            keyExtractor={item => item.id}
+          />
+        </View>
+        {/* popular */}
+        <View style={styles.popularContainer}>
+          <Text style={styles.mainTitles}> Popular </Text>
+          <FlatList
+            data={populardata}
+            renderItem={renderpopular}
+            keyExtractor={item => item.id}
+          />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -177,6 +183,9 @@ const styles = StyleSheet.create({
   popularContainer: {
     marginTop: 10
   },
+  text:{
+    
+  }
 
 });
 

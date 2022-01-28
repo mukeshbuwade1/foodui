@@ -3,6 +3,7 @@ import React from 'react';
 // import colors from './assets/colors/colors';
 // import Icon from 'react-native-vector-icons/FontAwesome';
 import Home from './src/Home';
+import Details from './src/Details';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -13,6 +14,7 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={Home} options={{headerShown:false}} />
+        <Stack.Screen name="Details" component={Details} options={{headerShown:false}} />
       </Stack.Navigator>
     </NavigationContainer>
   );
