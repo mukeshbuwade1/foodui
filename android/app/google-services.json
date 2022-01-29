@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "374059796691",
+    "project_id": "ninjas-f886b",
+    "storage_bucket": "ninjas-f886b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:374059796691:android:056fd3e2969cc2e7286c26",
+        "android_client_info": {
+          "package_name": "com.foodui"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "374059796691-b7i5oo6gd8od99a5n4dk0j8benupqnjb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASrWDYB3T34QuiKAa8xIKlIFh3J3uOpuo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "374059796691-b7i5oo6gd8od99a5n4dk0j8benupqnjb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -23,8 +23,8 @@ const Details = ({ navigation, route }) => {
             <ScrollView>
                 <View style={styles.header}>
                     <TouchableOpacity
-                    style={[styles.iconContainer, { borderColor: colors.textLight, }]}
-                    onPress={()=>navigation.pop()}>
+                        style={[styles.iconContainer, { borderColor: colors.textLight, }]}
+                        onPress={() => navigation.pop()}>
                         <Ionicons name="chevron-back" size={20} color={colors.textDark} />
                     </TouchableOpacity>
                     <View style={[styles.iconContainer, { borderColor: colors.primary, backgroundColor: colors.primary }]}>
@@ -50,7 +50,7 @@ const Details = ({ navigation, route }) => {
                     </View>
                     <Image source={image} style={{ width: 300, height: 200, right: -20, }} resizeMode='contain' />
                 </View>
-                <View style={{marginTop:10, marginBottom:30}}>
+                <View style={{ marginTop: 10, marginBottom: 30 }}>
                     <Text style={[styles.ingredient]}>Ingredient</Text>
                     <FlatList
                         showsHorizontalScrollIndicator={false}
@@ -61,19 +61,19 @@ const Details = ({ navigation, route }) => {
                     />
                 </View>
             </ScrollView>
-            <View 
-            style={{ 
-                flexDirection: "row", 
-                justifyContent:"center", 
-                alignItems:"center", 
-                backgroundColor:colors.primary, 
-                height:70, 
-                borderRadius:50 ,
-                bottom:20
+            <View
+                style={{
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    backgroundColor: colors.primary,
+                    height: 70,
+                    borderRadius: 50,
+                    bottom: 20
                 }}>
-                    <Text style={[styles.buttonText]}>Place an Order</Text>
-                    <Entypo name="chevron-right" size={25} color={colors.textDark} />
-                </View>
+                <Text style={[styles.buttonText]}>Place an Order</Text>
+                <Entypo name="chevron-right" size={25} color={colors.textDark} />
+            </View>
         </SafeAreaView>
     );
 };
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     buttonText: {
         fontSize: 17,
         fontFamily: "Montserrat-Bold",
-        color: colors.textDark,   
-        marginRight:5     
+        color: colors.textDark,
+        marginRight: 5
     }
 });
